@@ -8,11 +8,13 @@ def moving_average(values: list, window: int = 3) -> list:
     raise NotImplementedError
 
 
-def tag_reading(value: float, tags: list = []) -> list:
+def tag_reading(value: float, tags: list = None) -> list:
     """Ajoute une étiquette ('chaud' si > 25, sinon 'froid') à tags, et renvoie tags.
 
-    Contient un bug classique de Python à corriger (voir issue #2).
+    Chaque appel sans argument `tags` explicite démarre avec une nouvelle liste vide.
     """
+    if tags is None:
+        tags = []
     if value > 25:
         tags.append("chaud")
     else:
